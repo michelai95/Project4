@@ -27,7 +27,10 @@ export default {
     Egg,
     Footer
     // Egg
-  }
+  },
+  devServer: {
+     proxy: 'https://localhost:3000'
+ } 
 }
 
 </script>
@@ -50,7 +53,8 @@ export default {
   width: 20px;
 }
 @media only screen and (max-width: 600px) {
-  
+}
+@media only screen and (max-height: 600px) {
 }
 
 </style>

@@ -19,7 +19,7 @@ import axios from 'axios'
 window.axios = require('axios')
 require('dotenv').config()
 // import request from 'request'
-// import cors from 'Cors'
+// import cors from 'cors'
 
 /*----- TODO ------ */
 // Look into env file and why the variables aren't rendering 
@@ -62,12 +62,14 @@ export default {
   },
       methods: {
         submit() {
-          // axios.get(`${process.env.APP_API_CALL}`, { search: this.search })
 
           },
         getter() {
           axios.get(`${this.url}/${this.search}/`, {
-          'headers': { 'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`}, 
+          'headers': { 
+          'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`,
+          "Access-Control-Allow-Origin": "*"
+          }, 
           formData: {
             
           }})
@@ -88,15 +90,7 @@ export default {
         //   } || []
         },
 }
-  
-  // mounted() {
-  //     headers: {
-  //         Authorization: 'Token 9debd1d3952460da84ec60e5bb593ece0f4999b8'
-  //     }
-  //     axios
-  //       .get('https://bon-api.com/api/v1/ingredient/alternatives/')
-  //       .then(res => (this.info = response.alternatives.ingredient_name))
-  // },
+
 
 </script>
 <style scoped>
