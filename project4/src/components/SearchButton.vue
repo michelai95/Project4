@@ -67,17 +67,16 @@ export default {
         getter() {
           axios.get(`${this.url}/${this.search}/`, {
           'headers': { 
+          // 'Access-Control-Allow-Origin': '*',
           'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`,
-          "Access-Control-Allow-Origin": "*"
-          }, 
-          formData: {
-            
-          }})
+          'Content-Type': 'application/JSON',
+          'Allow': 'Get, OPTIONS, HEAD'
+          } 
+          })
           .then(response => console.log(response.body))
           .catch(error => {
-            console.log(error.response)
+            console.log('🍅', error.data)
           })
-          // this.search = response.data
         }
         },
       computed: {
