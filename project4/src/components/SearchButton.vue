@@ -4,8 +4,11 @@
     <form method="GET" id="search-form" @submit.prevent>
     <input id="searchBox" type="text" :ingredient="ingredient" v-model="search" placeholder="search for ingredients here" />
       <div id="buttons">
+        <router-link to="/search">
         <input id="button1" type="submit" @click="getter" value="search" />
+        </router-link>
         <input id="button2" type="submit" value="next" />
+        <router-view />
       </div>
     <!-- <div id="single-ingredient" v-for="ingredient in filteredIngredients" :key="ingredient.searched_ingredients" /> -->
     <!-- {{ info }} -->
@@ -69,9 +72,10 @@ export default {
           'headers': { 
           // 'Access-Control-Allow-Origin': '*',
           'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`,
-          'Content-Type': 'application/JSON',
-          'Allow': 'Get, OPTIONS, HEAD'
-          } 
+          'Content-Type': 'application/json',
+          "Accept": "application/json, text/plain, */*",
+          'Allow': 'Get, OPTIONS, HEAD',
+          "Access-Control-Allow-Credentials": "true"} 
           })
           .then(response => console.log(response.body))
           .catch(error => {
