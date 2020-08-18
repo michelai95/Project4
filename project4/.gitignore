@@ -1,0 +1,26 @@
+.DS_Store
+node_modules
+/dist
+/Users/michelaiacobucci/Desktop/seir_526/homeworks/project4/seir_526_p4/project4/node_modules
+
+
+# local env files
+.env
+.env.local
+.env.*.local
+.env.production
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
