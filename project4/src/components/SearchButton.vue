@@ -2,21 +2,18 @@
   <div id="search">
     <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
     <form method="GET" id="search-form" @submit.prevent>
-    <input id="searchBox" type="text" :ingredient="ingredient" v-model="search" placeholder="search for ingredients here" />
+    <input id="searchBox" type="text" v-model="search" placeholder="search for ingredients here" />
       <div id="buttons">
         <input id="button1" type="submit" @click="getter" value="search" />
         <input id="button2" type="submit" value="next" />
       </div>
-    <!-- <div id="single-ingredient" v-for="ingredient in filteredIngredients" :key="ingredient.searched_ingredients" /> -->
-    <!-- {{ info }} -->
-    <!-- <textarea id="ingredient" /> -->
     </form>
-    <div v-if="errored">
-      <p>I'm sorry, could you be more specific please?</p>
-    </div>
-    <div v-else>
+    <section v-if="wrong">
+    
+    </section>
+    <section v-else>
       {{ info }}
-    </div>
+    </section>
   </div>
 </template>
 
@@ -25,60 +22,45 @@ import axios from 'axios'
 window.axios = require('axios')
 require('dotenv').config()
 
-// const searchForm = document.getElementById('search-form')
-
-// searchForm.addEventListener('submit', processSearch)
-// function processSearch(e) {
-//   e.preventDefault()
-//   const search = searchForm.value
-//   console.log({searchForm})
-// }
-
 export default {
   name: "Search",
   data() {
     return {
       info: null,
-      errored: false,
+      wrong: false,
       search: "",
-      url: process.env.VUE_APP_URL,
-      ingredient: [
-        {
-          searched_ingredient: "milk",
-          ingredient_name: "whole milk",
-        },
-        {
-          searched_ingredient: "gluten",
-          ingredient_name: "cauliflower",
-        },
-      ]
+      url: process.env.VUE_APP_URL
     }
   },
       methods: {
         submit() {
-
+          
           },
         getter() {
           axios.get(`http://localhost:3000/test/${this.search}`)
-          .then(response => {this.info = response.data.alternatives})
-          .catch(error => {this.error = true,
+          .then(response => {
+            console.log(response)
+            let foodArray = (Object.entries(response.data.alternatives))
+            this.info = foodArray.map(entry => {
+              return entry[1].ingredient_name
+            }) 
+            console.log(this.info)
+            })
+          .catch(error => {this.wrong = true,
             console.log('🥕', error)
           })
-        }
         },
-      computed: {
-        // filteredIngredients: function() {
-        //   return this.ingredient.filter(spice => {
-        //     console.log(spice)
-        //     return spice.searched_ingredient.toLowerCase().includes(this.search.toLowerCase()) 
-        //     // could use .match instead of .includes
-        //     })
-        //   } || []
         },
+          // filteredIngredients: function() {
+          //   return this.info.filter(ingredient_name => {
+          //     console.log(ingredient_name)
+          //     return ingredient_name.searched_ingredient.toLowerCase().includes(this.search.toLowerCase()) 
+          //   // could use .match instead of .includes
+          //     })
+          //   },
 }
-
-
 </script>
+
 <style scoped>
 #searchBox {
   text-align: center;
