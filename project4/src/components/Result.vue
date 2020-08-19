@@ -3,10 +3,6 @@
   <section v-if="searched">
     <div class="result">
         <p> {{ response }} </p>
-      <!-- <div v-if="loginType === 'username'">
-        <label>Username</label>
-        <input placeholder="Enter your username" key="username-input">
-      </div> -->
     </div>
   </section>
   <section v-else>

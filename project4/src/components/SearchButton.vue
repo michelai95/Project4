@@ -11,7 +11,10 @@
     <!-- {{ info }} -->
     <!-- <textarea id="ingredient" /> -->
     </form>
-    <div id="result">
+    <div v-if="error">
+      <p>I'm sorry, could you be more specific please?</p>
+    </div>
+    <div v-else>
       {{ info }}
     </div>
     <Result />
@@ -22,21 +25,7 @@
 import axios from 'axios'
 window.axios = require('axios')
 require('dotenv').config()
-import Result from './Result'
-// import request from 'request'
-// import cors from 'cors'
-
-/*----- TODO ------ */
-// Look into env file and why the variables aren't rendering 
-// Make sure that the acess token is right 
-// Create space for data to render 
-
-// const auth = {
-//       'headers': { 'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`},
-//       formData: {
-
-//       }
-//     }
+import Result from './components/Result.vue'
 
 // const searchForm = document.getElementById('search-form')
 
@@ -52,6 +41,7 @@ export default {
   data() {
     return {
       info: null,
+      error: false,
       search: "",
       url: process.env.VUE_APP_URL,
       ingredient: [
@@ -76,8 +66,8 @@ export default {
         getter() {
           axios.get(`http://localhost:3000/test/${this.search}`)
           .then(response => {this.info = response.data.alternatives})
-          .catch(error => {
-            console.log('🥕', error.data)
+          .catch(error => {this.error = true,
+            console.log('🥕', error)
           })
         }
         },
