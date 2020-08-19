@@ -2,33 +2,33 @@ require('dotenv').config()
 const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const { default: Axios } = require('axios')
+const mongoose = require('mongoose')
 
 
 const app = express()
 
-app.all('/*', function(req, res, next) {
-    // CORS headers
-    res.header("Access-Control-Allow-Origin", "*"); // restrict it to the required domain
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    // Set custom headers for CORS
-    res.header('Access-Control-Allow-Headers', 'Content-type,Accept,X-Access-Token,X-Key');
-    if (req.method == 'OPTIONS') {
-      res.status(200).end();
-    } else {
-      next();
-    }
-  });
-
-// app.use(cors({
-//     origin: process.env.VUE_APP_CLIENT_URL,
-//     optionsSuccessStatus: 200
-// }))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(cors())
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
+// app.use('/test', require('./src/components/SearchButton.vue'))
 
 app.get('/', (req, res) => {
     res.send(`You are listening to the smooth sounds of port ${process.env.PORT}`)
+})
+
+app.get('/test/:ingredient', (req, res) => {
+    console.log("🍑",req.params)
+    Axios.get(`${process.env.VUE_APP_URL}/${req.params.ingredient}/`, {
+    'headers': { 
+    'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`} 
+    }).then(response => {
+        console.log("🍞🍞data------", response.data)
+        res.send(response.data)
+    }).catch(error => {
+    console.log('🍅', error)
+    })
 })
 
 app.listen(process.env.PORT || 3000, () => {

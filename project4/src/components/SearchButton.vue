@@ -4,16 +4,16 @@
     <form method="GET" id="search-form" @submit.prevent>
     <input id="searchBox" type="text" :ingredient="ingredient" v-model="search" placeholder="search for ingredients here" />
       <div id="buttons">
-        <router-link to="/search">
         <input id="button1" type="submit" @click="getter" value="search" />
-        </router-link>
         <input id="button2" type="submit" value="next" />
-        <router-view />
       </div>
     <!-- <div id="single-ingredient" v-for="ingredient in filteredIngredients" :key="ingredient.searched_ingredients" /> -->
     <!-- {{ info }} -->
     <!-- <textarea id="ingredient" /> -->
     </form>
+    <div id="result">
+      <Result />
+    </div>
   </div>
 </template>
 
@@ -21,6 +21,7 @@
 import axios from 'axios'
 window.axios = require('axios')
 require('dotenv').config()
+import Result from './Result'
 // import request from 'request'
 // import cors from 'cors'
 
@@ -63,23 +64,18 @@ export default {
       ]
     }
   },
+  components: {
+    Result
+  },
       methods: {
         submit() {
 
           },
         getter() {
-          axios.get(`${this.url}/${this.search}/`, {
-          'headers': { 
-          // 'Access-Control-Allow-Origin': '*',
-          'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`,
-          'Content-Type': 'application/json',
-          "Accept": "application/json, text/plain, */*",
-          'Allow': 'Get, OPTIONS, HEAD',
-          "Access-Control-Allow-Credentials": "true"} 
-          })
-          .then(response => console.log(response.body))
+          axios.get(`http://localhost:3000/test/${this.search}`)
+          .then(response => console.log(response.data))
           .catch(error => {
-            console.log('🍅', error.data)
+            console.log('🥕', error.data)
           })
         }
         },

@@ -2,11 +2,6 @@ import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
 
-
-// export default [
-//     {path: '/', component: App},
-//     {path: '/search', component: Result}
-// ]
 const routes = [
     {
     path: '/',

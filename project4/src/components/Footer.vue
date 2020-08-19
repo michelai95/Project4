@@ -15,11 +15,11 @@ export default {
     flex-direction: column-reverse;
     align-content: flex-end;
     font-size: 12px;
-    margin-top: 20%;
+    margin-top: 30vh;
 }
 @media only screen and (max-width: 600px) {
 #footer {
-    margin-top: 60%;
+    margin-top: 40%;
 }
 }
 </style>

@@ -1,16 +1,20 @@
-<template v-if="searched">
+<template>
+<div>
+  <section v-if="searched">
     <div class="result">
-        <p>test</p>
+        <p> {{response.data }} </p>
+      <!-- <div v-if="loginType === 'username'">
+        <label>Username</label>
+        <input placeholder="Enter your username" key="username-input">
+      </div> -->
     </div>
+  </section>
+  <section v-else>
+    <p></p>
+  </section>
+</div>
 </template>
-<template v-if="loginType === 'username'">
-  <label>Username</label>
-  <input placeholder="Enter your username" key="username-input">
-</template>
-<template v-else>
-  <label>Email</label>
-  <input placeholder="Enter your email address" key="email-input">
-</template>
+
 
 <script>
 export default {

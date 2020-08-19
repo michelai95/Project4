@@ -5,13 +5,6 @@ require('dotenv').config()
 
 Vue.config.productionTip = false
 
-
-// Vue.use(cors({
-//   origin: process.env.VUE_APP_URL,
-//   optionSuccessStatus: 200
-// }))
-// Vue.http.headers.common['Access-Control-Request-Method'] = '*'
-
 new Vue({
   render: h => h(App),
 }).$mount('#app')
