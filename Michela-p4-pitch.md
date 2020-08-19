@@ -25,10 +25,10 @@
 [ ] - Ingredients
 
 # MVP:
-[ ] - form that allows user to input ingredient they can't have 
-[ ] - query API to return an ingredient that could replace form submitted ingredient 
-[ ] - front end that is mobile friendly 
-[ ] - dummy data for a user 
+[X] - form that allows user to input ingredient they can't have 
+[X] - query API to return an ingredient that could replace form submitted ingredient 
+[X] - front end that is mobile friendly 
+[X] - dummy data for a user 
 
 # Stretch:
 [ ] - users are involved - create auth and user profile/login
