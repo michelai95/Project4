@@ -18,6 +18,7 @@ import Egg from './components/Egg.vue'
 import Footer from './components/Footer'
 
 
+
 export default {
   name: 'App',
   components: {

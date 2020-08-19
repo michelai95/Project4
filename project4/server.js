@@ -24,6 +24,7 @@ app.get('/test/:ingredient', (req, res) => {
     'headers': { 
     'Authorization': `Token ${process.env.VUE_APP_ACCESS_TOKEN}`} 
     }).then(response => {
+        // let results = data.about.alternatives
         console.log("🍞🍞data------", response.data)
         res.send(response.data)
     }).catch(error => {

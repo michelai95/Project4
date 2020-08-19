@@ -2,7 +2,7 @@
 <div>
   <section v-if="searched">
     <div class="result">
-        <p> {{response.data }} </p>
+        <p> {{ response }} </p>
       <!-- <div v-if="loginType === 'username'">
         <label>Username</label>
         <input placeholder="Enter your username" key="username-input">
@@ -18,6 +18,12 @@
 
 <script>
 export default {
-    name: 'Result'
+  name: 'Result',
+  data() {
+    return {
+      
+    }
+    
+  }
 }
 </script>

@@ -12,8 +12,9 @@
     <!-- <textarea id="ingredient" /> -->
     </form>
     <div id="result">
-      <Result />
+      {{ info }}
     </div>
+    <Result />
   </div>
 </template>
 
@@ -50,6 +51,7 @@ export default {
   name: "Search",
   data() {
     return {
+      info: null,
       search: "",
       url: process.env.VUE_APP_URL,
       ingredient: [
@@ -73,7 +75,7 @@ export default {
           },
         getter() {
           axios.get(`http://localhost:3000/test/${this.search}`)
-          .then(response => console.log(response.data))
+          .then(response => {this.info = response.data.alternatives})
           .catch(error => {
             console.log('🥕', error.data)
           })
