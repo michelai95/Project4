@@ -11,13 +11,12 @@
     <!-- {{ info }} -->
     <!-- <textarea id="ingredient" /> -->
     </form>
-    <div v-if="error">
+    <div v-if="errored">
       <p>I'm sorry, could you be more specific please?</p>
     </div>
     <div v-else>
       {{ info }}
     </div>
-    <Result />
   </div>
 </template>
 
@@ -25,7 +24,6 @@
 import axios from 'axios'
 window.axios = require('axios')
 require('dotenv').config()
-import Result from './components/Result.vue'
 
 // const searchForm = document.getElementById('search-form')
 
@@ -41,7 +39,7 @@ export default {
   data() {
     return {
       info: null,
-      error: false,
+      errored: false,
       search: "",
       url: process.env.VUE_APP_URL,
       ingredient: [
@@ -55,9 +53,6 @@ export default {
         },
       ]
     }
-  },
-  components: {
-    Result
   },
       methods: {
         submit() {
